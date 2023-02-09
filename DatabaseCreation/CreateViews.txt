@@ -45,6 +45,6 @@ create view DetayliKitapBilgisi
 			on al.AltKategoriID=k.AltKategoriID inner join KitapYaz ky
 				on k.KitapID=ky.KitapID inner join Yazar y
 					on ky.YazarID=y.YazarID inner join Users u
-						on k.SaticiID=u.UserID 
+						on k.SaticiID=u.UserID
 
 
