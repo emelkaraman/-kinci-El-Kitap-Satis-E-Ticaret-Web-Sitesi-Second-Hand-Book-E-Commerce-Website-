@@ -5,3 +5,4 @@ A person can be customer and vendor.
 An admin can choose another admin from users.
 An admin can delete a customer or vendor. 
 A vendor can sell different books and a customer can buy a lot of books.
+This project created with dbfirst strategy.
