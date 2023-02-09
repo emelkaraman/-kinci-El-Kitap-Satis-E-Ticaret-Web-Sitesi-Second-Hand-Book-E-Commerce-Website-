@@ -1,0 +1,50 @@
+--Creat Views
+create view saticiListesi as
+	Select U.UserFirstName, U.UserLastName from Users U Inner Join Users_UserTurleriIliskisi US
+		On U.UserID=US.UserID Where US.TurID=2
+
+
+create view detayliSaticiListesi as
+	Select U.UserID, U.UserFirstName, U.UserLastName, U.ilKodu, U.ilceKodu, U.Adres,U.UserMail, U.UserPhone from Users U Inner Join Users_UserTurleriIliskisi US
+		On U.UserID=US.UsersID Where US.TurID='2'
+
+create view detayliMusteriListesi as
+	Select U.UserID, U.UserFirstName, U.UserLastName, U.ilKodu, U.ilceKodu, U.Adres,U.UserMail, U.UserPhone from Users U Inner Join Users_UserTurleriIliskisi US
+		On U.UserID=US.UsersID Where US.TurID='3'
+
+create view detayliAdminListesi as
+	Select U.UserID, U.UserFirstName, U.UserLastName, U.ilKodu, U.ilceKodu, U.Adres,U.UserMail, U.UserPhone from Users U Inner Join Users_UserTurleriIliskisi US
+		On U.UserID=US.UsersID Where US.TurID='1'
+
+
+
+Create View SiparişDetayı
+as 
+SELECT k.SaticiID,s.SipTarihi, s.SiparisID,K.ID,KA.KitapAdi, K.UrunAdedi,K.BirimFiyat, A.KargoFirmasiAdi, A.KargoFirmasiTel, B.YetkiliAd, U.UserFirstName + U.UserLastName as Musteri,
+U.Adres, U.ilceKodu,U.ilKodu, uu.UserFirstName + uu.UserLastName as satici from Siparis s inner join KitapSiparisEdilir K
+	on s.SiparisID=k.SiparisID inner join Kitap KA
+		on K.KitapID=KA.KitapID inner join KargoFirmasi A
+			on A.KargoFirmasiID=s.KargoFirmasiID inner join KargoFirmYetkili B
+				on A.KargoFirmasiID=B.KargoFirmasiID inner join Users U
+					on U.UserID=s.MusteriID inner join Users uu 
+						on uu.UserID=K.SaticiID
+
+create view KisiyeGoreTurListesiView
+as
+select U.UserID,US.TurID from Users U Inner join Users_UserTurleriIliskisi US
+	On U.UserID=US.UsersID
+
+
+
+create view DetayliKitapBilgisi 
+	as
+	Select k.KitapID as KitapID,k.SaticiID as saticiID,u.UserFirstName + u.UserLastName as saticiad, k.KitapAdi as KitapAd, k.Fiyat as Fiyat,
+	k.Adet as Adet, k.imgPath as imgpath, ka.KategoriAdi as kategadi, al.AltKategoriAdi as altkatadi, y.YazarAdi as yazaradi,ka.KategoriID as KategoriID,
+	al.AltKategoriID as AltKategoriID from Kitap k inner join kategori ka
+		On k.KategoriID=ka.KategoriID inner join AltKategori al
+			on al.AltKategoriID=k.AltKategoriID inner join KitapYaz ky
+				on k.KitapID=ky.KitapID inner join Yazar y
+					on ky.YazarID=y.YazarID inner join Users u
+						on k.SaticiID=u.UserID 
+
+

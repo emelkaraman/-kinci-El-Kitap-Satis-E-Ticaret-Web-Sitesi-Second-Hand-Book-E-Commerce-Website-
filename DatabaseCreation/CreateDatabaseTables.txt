@@ -1,0 +1,126 @@
+USE İkinciElKitapSatis
+GO
+
+CREATE TABLE il(
+	ilKodu INT PRIMARY KEY NOT NULL,
+	ilAdi varchar(25) NOT NULL
+)
+
+CREATE TABLE ilce(
+	ilceKodu INT PRIMARY KEY NOT NULL,
+	ilceAdi varchar(25) NOT NULL,
+	ilKodu INT FOREIGN KEY REFERENCES il(ilKodu) not null
+)
+
+CREATE TABLE Users(
+	UserID INT IDENTITY(1,1) PRIMARY KEY,
+	UserFirstName varchar(25) NOT NULL,
+	UserLastName varchar(25) NOT NULL,
+	UserMail varchar(50) NOT NULL,
+	UserPhone varchar(50) NOT NULL,
+	UserPassword varchar(50) NOT NULL,
+	Adres varchar(100) NOT NULL,
+	ilKodu INT FOREIGN KEY REFERENCES il(ilKodu) not null,
+	ilceKodu INT FOREIGN KEY REFERENCES İlce(İlceKodu) not null
+)
+
+CREATE TABLE UserTurleri(
+	TurID INT IDENTITY(1,1) PRIMARY KEY,
+	UserTurAdi varchar(25) NOT NULL,
+)
+
+CREATE TABLE Users_UserTurleriIliskisi(
+	ID INT IDENTITY(1,1) PRIMARY KEY,
+	UserID INT FOREIGN KEY REFERENCES Users(UserID) Not null,
+	TurID INT FOREIGN KEY REFERENCES UserTurleri(TurID) not null,
+)
+
+CREATE TABLE Kart(
+	KartID INT IDENTITY(1,1) PRIMARY KEY,
+	KartNumarası varchar(30) unique NOT NULL,
+	UserID INT FOREIGN KEY REFERENCES Users(UserID) Not null,
+	KartınUstundekiİsim varchar(50) not null,
+	CVV varchar(10) not null,
+	sonKullAy int not null,
+	sonKullYil int not null
+
+)
+
+CREATE TABLE Kategori(
+	KategoriID INT IDENTITY(1,1) PRIMARY KEY,
+	KategoriAdi varchar(30) NOT NULL
+)
+
+CREATE TABLE AltKategori(
+	AltKategoriID INT IDENTITY(1,1) PRIMARY KEY,
+	AltKategoriAdi varchar(30) NOT NULL,
+	KategoriID INT FOREIGN KEY REFERENCES Kategori(KategoriID) Not Null
+)
+
+CREATE TABLE Kitap(
+	KitapID INT IDENTITY(1,1) PRIMARY KEY,
+	KitapAdi varchar(30) NOT NULL,
+	Fiyat decimal not null,
+	KategoriID INT FOREIGN KEY REFERENCES Kategori(KategoriID) not null,
+	AltKategoriID INT FOREIGN KEY REFERENCES AltKategori(AltKategoriID) not null,
+	SaticiID INT FOREIGN KEY REFERENCES Users(UserID) not null,
+	imgPath varchar(50),
+	Adet INT not null
+
+)
+
+CREATE TABLE Yazar(
+	YazarID INT IDENTITY(1,1) PRIMARY KEY,
+	YazarAdi varchar(30) NOT NULL
+)
+
+CREATE TABLE KitapYaz(
+	ID INT IDENTITY(1,1) PRIMARY KEY,
+	YazarID INT FOREIGN KEY REFERENCES Yazar(YazarID) Not null,
+	KitapID INT FOREIGN KEY REFERENCES Kitap(KitapID) not null
+)
+
+CREATE TABLE KargoFirmasi(
+	KargoFirmasiID INT IDENTITY(1,1) PRIMARY KEY,
+	KargoFirmasiAdi varchar(25) not null,
+	KargoFirmasiTel varchar(25) not null
+)
+
+CREATE TABLE Siparis(
+	SiparisID INT IDENTITY(1,1) PRIMARY KEY,
+	SipTarihi DATETIME not null,
+	MusteriID INT FOREIGN KEY REFERENCES Users(UserID) not null,
+	KargoFirmasiID INT FOREIGN KEY REFERENCES KargoFirmasi(KargoFirmasiID) not null,
+	MusteriKartID int foreign key references Kart(KartID) not null,
+	ToplamTutar decimal not null
+
+)
+
+CREATE TABLE KitapSiparisEdilir(
+	ID INT IDENTITY(1,1) PRIMARY KEY,
+	KitapID INT FOREIGN KEY REFERENCES Kitap(KitapID) not null,
+	SiparisID INT FOREIGN KEY REFERENCES Siparis(SiparisID) not null,
+	BirimFiyat decimal not null,
+	UrunAdedi INT not null,
+	SaticiID int foreign key references Users(UserID) not null
+
+)
+
+CREATE TABLE Fatura(
+	FaturaID INT IDENTITY(1,1) PRIMARY KEY,
+	FaturaAd varchar(25) not null,
+	FaturaNo varchar(25) unique not null,
+	FaturaTarih Date not null,
+	SiparisID INT FOREIGN KEY REFERENCES Siparis(SiparisID) not null
+)
+
+CREATE TABLE KargoFirmYetkili(
+	YetkiliID INT IDENTITY(1,1) PRIMARY KEY,
+	YetkiliAd varchar(25) not null,
+	KargoFirmasiID INT FOREIGN KEY REFERENCES KargoFirmasi(KargoFirmasiID) not null
+)
+
+
+
+
+
