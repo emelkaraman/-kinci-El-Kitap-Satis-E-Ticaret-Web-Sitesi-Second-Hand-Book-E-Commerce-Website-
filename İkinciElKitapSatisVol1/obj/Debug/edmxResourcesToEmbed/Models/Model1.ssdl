@@ -1,0 +1,726 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="İkinciElKitapSatisModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AltKategori">
+    <Key>
+      <PropertyRef Name="AltKategoriID" />
+    </Key>
+    <Property Name="AltKategoriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AltKategoriAdi" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="KategoriID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Fatura">
+    <Key>
+      <PropertyRef Name="FaturaID" />
+    </Key>
+    <Property Name="FaturaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FaturaAd" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="FaturaNo" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="FaturaTarih" Type="date" Nullable="false" />
+    <Property Name="SiparisID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="il">
+    <Key>
+      <PropertyRef Name="ilKodu" />
+    </Key>
+    <Property Name="ilKodu" Type="int" Nullable="false" />
+    <Property Name="ilAdi" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ilce">
+    <Key>
+      <PropertyRef Name="ilceKodu" />
+    </Key>
+    <Property Name="ilceKodu" Type="int" Nullable="false" />
+    <Property Name="ilceAdi" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="ilKodu" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KargoFirmasi">
+    <Key>
+      <PropertyRef Name="KargoFirmasiID" />
+    </Key>
+    <Property Name="KargoFirmasiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KargoFirmasiAdi" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="KargoFirmasiTel" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KargoFirmYetkili">
+    <Key>
+      <PropertyRef Name="YetkiliID" />
+    </Key>
+    <Property Name="YetkiliID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="YetkiliAd" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="KargoFirmasiID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kart">
+    <Key>
+      <PropertyRef Name="KartID" />
+    </Key>
+    <Property Name="KartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KartNumarası" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="KartınUstundekiİsim" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CVV" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="sonKullAy" Type="int" Nullable="false" />
+    <Property Name="sonKullYil" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kategori">
+    <Key>
+      <PropertyRef Name="KategoriID" />
+    </Key>
+    <Property Name="KategoriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KategoriAdi" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kitap">
+    <Key>
+      <PropertyRef Name="KitapID" />
+    </Key>
+    <Property Name="KitapID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KitapAdi" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Fiyat" Type="float" />
+    <Property Name="KategoriID" Type="int" Nullable="false" />
+    <Property Name="AltKategoriID" Type="int" Nullable="false" />
+    <Property Name="SaticiID" Type="int" Nullable="false" />
+    <Property Name="imgPath" Type="varchar" MaxLength="50" />
+    <Property Name="Adet" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KitapSiparisEdilir">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KitapID" Type="int" Nullable="false" />
+    <Property Name="SiparisID" Type="int" Nullable="false" />
+    <Property Name="BirimFiyat" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="UrunAdedi" Type="int" Nullable="false" />
+    <Property Name="SaticiID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KitapYaz">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="YazarID" Type="int" Nullable="false" />
+    <Property Name="KitapID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Siparis">
+    <Key>
+      <PropertyRef Name="SiparisID" />
+    </Key>
+    <Property Name="SiparisID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SipTarihi" Type="datetime" Nullable="false" />
+    <Property Name="MusteriID" Type="int" Nullable="false" />
+    <Property Name="KargoFirmasiID" Type="int" Nullable="false" />
+    <Property Name="MusteriKartID" Type="int" Nullable="false" />
+    <Property Name="ToplamTutar" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserFirstName" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="UserLastName" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="UserMail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserPhone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserPassword" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Adres" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ilKodu" Type="int" Nullable="false" />
+    <Property Name="ilceKodu" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users_UserTurleriIliskisi">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UsersID" Type="int" Nullable="false" />
+    <Property Name="TurID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserTurleri">
+    <Key>
+      <PropertyRef Name="TurID" />
+    </Key>
+    <Property Name="TurID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserTurAdi" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Yazar">
+    <Key>
+      <PropertyRef Name="YazarID" />
+    </Key>
+    <Property Name="YazarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="YazarAdi" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'İkinciElKitapSatis.dbo.detayliAdminListesi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="detayliAdminListesi">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="UserFirstName" />
+      <PropertyRef Name="UserLastName" />
+      <PropertyRef Name="ilKodu" />
+      <PropertyRef Name="ilceKodu" />
+      <PropertyRef Name="Adres" />
+      <PropertyRef Name="UserMail" />
+      <PropertyRef Name="UserPhone" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="UserFirstName" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="UserLastName" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="ilKodu" Type="int" Nullable="false" />
+    <Property Name="ilceKodu" Type="int" Nullable="false" />
+    <Property Name="Adres" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserMail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserPhone" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'İkinciElKitapSatis.dbo.DetayliKitapBilgisi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DetayliKitapBilgisi">
+    <Key>
+      <PropertyRef Name="KitapID" />
+      <PropertyRef Name="saticiID" />
+      <PropertyRef Name="saticiad" />
+      <PropertyRef Name="KitapAd" />
+      <PropertyRef Name="kategadi" />
+      <PropertyRef Name="altkatadi" />
+      <PropertyRef Name="yazaradi" />
+      <PropertyRef Name="KategoriID" />
+      <PropertyRef Name="AltKategoriID" />
+    </Key>
+    <Property Name="KitapID" Type="int" Nullable="false" />
+    <Property Name="saticiID" Type="int" Nullable="false" />
+    <Property Name="saticiad" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="KitapAd" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Fiyat" Type="float" />
+    <Property Name="Adet" Type="int" />
+    <Property Name="imgpath" Type="varchar" MaxLength="50" />
+    <Property Name="kategadi" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="altkatadi" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="yazaradi" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="KategoriID" Type="int" Nullable="false" />
+    <Property Name="AltKategoriID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'İkinciElKitapSatis.dbo.detayliMusteriListesi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="detayliMusteriListesi">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="UserFirstName" />
+      <PropertyRef Name="UserLastName" />
+      <PropertyRef Name="ilKodu" />
+      <PropertyRef Name="ilceKodu" />
+      <PropertyRef Name="Adres" />
+      <PropertyRef Name="UserMail" />
+      <PropertyRef Name="UserPhone" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="UserFirstName" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="UserLastName" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="ilKodu" Type="int" Nullable="false" />
+    <Property Name="ilceKodu" Type="int" Nullable="false" />
+    <Property Name="Adres" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserMail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserPhone" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'İkinciElKitapSatis.dbo.detayliSaticiListesi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="detayliSaticiListesi">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="UserFirstName" />
+      <PropertyRef Name="UserLastName" />
+      <PropertyRef Name="ilKodu" />
+      <PropertyRef Name="ilceKodu" />
+      <PropertyRef Name="Adres" />
+      <PropertyRef Name="UserMail" />
+      <PropertyRef Name="UserPhone" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="UserFirstName" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="UserLastName" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="ilKodu" Type="int" Nullable="false" />
+    <Property Name="ilceKodu" Type="int" Nullable="false" />
+    <Property Name="Adres" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserMail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserPhone" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'İkinciElKitapSatis.dbo.KisiyeGoreTurListesiView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="KisiyeGoreTurListesiView">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="TurID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="TurID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'İkinciElKitapSatis.dbo.saticiListesi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="saticiListesi">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="UserFirstName" />
+      <PropertyRef Name="UserLastName" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="UserFirstName" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="UserLastName" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'İkinciElKitapSatis.dbo.SiparişDetayı' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SiparişDetayı">
+    <Key>
+      <PropertyRef Name="SaticiID" />
+      <PropertyRef Name="SipTarihi" />
+      <PropertyRef Name="SiparisID" />
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="KitapAdi" />
+      <PropertyRef Name="UrunAdedi" />
+      <PropertyRef Name="BirimFiyat" />
+      <PropertyRef Name="KargoFirmasiAdi" />
+      <PropertyRef Name="KargoFirmasiTel" />
+      <PropertyRef Name="YetkiliAd" />
+      <PropertyRef Name="Musteri" />
+      <PropertyRef Name="Adres" />
+      <PropertyRef Name="ilceKodu" />
+      <PropertyRef Name="ilKodu" />
+      <PropertyRef Name="satici" />
+    </Key>
+    <Property Name="SaticiID" Type="int" Nullable="false" />
+    <Property Name="SipTarihi" Type="datetime" Nullable="false" />
+    <Property Name="SiparisID" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="KitapAdi" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="UrunAdedi" Type="int" Nullable="false" />
+    <Property Name="BirimFiyat" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="KargoFirmasiAdi" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="KargoFirmasiTel" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="YetkiliAd" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Musteri" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Adres" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ilceKodu" Type="int" Nullable="false" />
+    <Property Name="ilKodu" Type="int" Nullable="false" />
+    <Property Name="satici" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__AltKatego__Kateg__37A5467C">
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="1" />
+    <End Role="AltKategori" Type="Self.AltKategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KategoriID" />
+      </Principal>
+      <Dependent Role="AltKategori">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Fatura__SiparisI__7A672E12">
+    <End Role="Siparis" Type="Self.Siparis" Multiplicity="1" />
+    <End Role="Fatura" Type="Self.Fatura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Siparis">
+        <PropertyRef Name="SiparisID" />
+      </Principal>
+      <Dependent Role="Fatura">
+        <PropertyRef Name="SiparisID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ilce__ilKodu__267ABA7A">
+    <End Role="il" Type="Self.il" Multiplicity="1" />
+    <End Role="ilce" Type="Self.ilce" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="il">
+        <PropertyRef Name="ilKodu" />
+      </Principal>
+      <Dependent Role="ilce">
+        <PropertyRef Name="ilKodu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KargoFirm__Kargo__534D60F1">
+    <End Role="KargoFirmasi" Type="Self.KargoFirmasi" Multiplicity="1" />
+    <End Role="KargoFirmYetkili" Type="Self.KargoFirmYetkili" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KargoFirmasi">
+        <PropertyRef Name="KargoFirmasiID" />
+      </Principal>
+      <Dependent Role="KargoFirmYetkili">
+        <PropertyRef Name="KargoFirmasiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Kart__UserID__6477ECF3">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Kart" Type="Self.Kart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Kart">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Kitap__AltKatego__3B75D760">
+    <End Role="AltKategori" Type="Self.AltKategori" Multiplicity="1" />
+    <End Role="Kitap" Type="Self.Kitap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AltKategori">
+        <PropertyRef Name="AltKategoriID" />
+      </Principal>
+      <Dependent Role="Kitap">
+        <PropertyRef Name="AltKategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Kitap__KategoriI__3A81B327">
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="1" />
+    <End Role="Kitap" Type="Self.Kitap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KategoriID" />
+      </Principal>
+      <Dependent Role="Kitap">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Kitap__SaticiID__3C69FB99">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Kitap" Type="Self.Kitap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Kitap">
+        <PropertyRef Name="SaticiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KitapSipa__Kitap__7D439ABD">
+    <End Role="Kitap" Type="Self.Kitap" Multiplicity="1" />
+    <End Role="KitapSiparisEdilir" Type="Self.KitapSiparisEdilir" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kitap">
+        <PropertyRef Name="KitapID" />
+      </Principal>
+      <Dependent Role="KitapSiparisEdilir">
+        <PropertyRef Name="KitapID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KitapSipa__Satic__7F2BE32F">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="KitapSiparisEdilir" Type="Self.KitapSiparisEdilir" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="KitapSiparisEdilir">
+        <PropertyRef Name="SaticiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KitapSipa__Sipar__7E37BEF6">
+    <End Role="Siparis" Type="Self.Siparis" Multiplicity="1" />
+    <End Role="KitapSiparisEdilir" Type="Self.KitapSiparisEdilir" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Siparis">
+        <PropertyRef Name="SiparisID" />
+      </Principal>
+      <Dependent Role="KitapSiparisEdilir">
+        <PropertyRef Name="SiparisID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KitapYaz__KitapI__4222D4EF">
+    <End Role="Kitap" Type="Self.Kitap" Multiplicity="1" />
+    <End Role="KitapYaz" Type="Self.KitapYaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kitap">
+        <PropertyRef Name="KitapID" />
+      </Principal>
+      <Dependent Role="KitapYaz">
+        <PropertyRef Name="KitapID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KitapYaz__YazarI__412EB0B6">
+    <End Role="Yazar" Type="Self.Yazar" Multiplicity="1" />
+    <End Role="KitapYaz" Type="Self.KitapYaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yazar">
+        <PropertyRef Name="YazarID" />
+      </Principal>
+      <Dependent Role="KitapYaz">
+        <PropertyRef Name="YazarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Siparis__KargoFi__71D1E811">
+    <End Role="KargoFirmasi" Type="Self.KargoFirmasi" Multiplicity="1" />
+    <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KargoFirmasi">
+        <PropertyRef Name="KargoFirmasiID" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="KargoFirmasiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Siparis__Musteri__70DDC3D8">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="MusteriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Siparis__Musteri__72C60C4A">
+    <End Role="Kart" Type="Self.Kart" Multiplicity="1" />
+    <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kart">
+        <PropertyRef Name="KartID" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="MusteriKartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__ilceKodu__2A4B4B5E">
+    <End Role="ilce" Type="Self.ilce" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ilce">
+        <PropertyRef Name="ilceKodu" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="ilceKodu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__ilKodu__29572725">
+    <End Role="il" Type="Self.il" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="il">
+        <PropertyRef Name="ilKodu" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="ilKodu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users_Use__TurID__300424B4">
+    <End Role="UserTurleri" Type="Self.UserTurleri" Multiplicity="1" />
+    <End Role="Users_UserTurleriIliskisi" Type="Self.Users_UserTurleriIliskisi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTurleri">
+        <PropertyRef Name="TurID" />
+      </Principal>
+      <Dependent Role="Users_UserTurleriIliskisi">
+        <PropertyRef Name="TurID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users_Use__UserI__2F10007B">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Users_UserTurleriIliskisi" Type="Self.Users_UserTurleriIliskisi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Users_UserTurleriIliskisi">
+        <PropertyRef Name="UsersID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="KisiyeGoreTurListesi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="İkinciElKitapSatisModelStoreContainer">
+    <EntitySet Name="AltKategori" EntityType="Self.AltKategori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fatura" EntityType="Self.Fatura" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="il" EntityType="Self.il" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ilce" EntityType="Self.ilce" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KargoFirmasi" EntityType="Self.KargoFirmasi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KargoFirmYetkili" EntityType="Self.KargoFirmYetkili" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kart" EntityType="Self.Kart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kitap" EntityType="Self.Kitap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KitapSiparisEdilir" EntityType="Self.KitapSiparisEdilir" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KitapYaz" EntityType="Self.KitapYaz" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Siparis" EntityType="Self.Siparis" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users_UserTurleriIliskisi" EntityType="Self.Users_UserTurleriIliskisi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserTurleri" EntityType="Self.UserTurleri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Yazar" EntityType="Self.Yazar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="detayliAdminListesi" EntityType="Self.detayliAdminListesi" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [detayliAdminListesi].[UserID] AS [UserID], 
+    [detayliAdminListesi].[UserFirstName] AS [UserFirstName], 
+    [detayliAdminListesi].[UserLastName] AS [UserLastName], 
+    [detayliAdminListesi].[ilKodu] AS [ilKodu], 
+    [detayliAdminListesi].[ilceKodu] AS [ilceKodu], 
+    [detayliAdminListesi].[Adres] AS [Adres], 
+    [detayliAdminListesi].[UserMail] AS [UserMail], 
+    [detayliAdminListesi].[UserPhone] AS [UserPhone]
+    FROM [dbo].[detayliAdminListesi] AS [detayliAdminListesi]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DetayliKitapBilgisi" EntityType="Self.DetayliKitapBilgisi" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DetayliKitapBilgisi].[KitapID] AS [KitapID], 
+    [DetayliKitapBilgisi].[saticiID] AS [saticiID], 
+    [DetayliKitapBilgisi].[saticiad] AS [saticiad], 
+    [DetayliKitapBilgisi].[KitapAd] AS [KitapAd], 
+    [DetayliKitapBilgisi].[Fiyat] AS [Fiyat], 
+    [DetayliKitapBilgisi].[Adet] AS [Adet], 
+    [DetayliKitapBilgisi].[imgpath] AS [imgpath], 
+    [DetayliKitapBilgisi].[kategadi] AS [kategadi], 
+    [DetayliKitapBilgisi].[altkatadi] AS [altkatadi], 
+    [DetayliKitapBilgisi].[yazaradi] AS [yazaradi], 
+    [DetayliKitapBilgisi].[KategoriID] AS [KategoriID], 
+    [DetayliKitapBilgisi].[AltKategoriID] AS [AltKategoriID]
+    FROM [dbo].[DetayliKitapBilgisi] AS [DetayliKitapBilgisi]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="detayliMusteriListesi" EntityType="Self.detayliMusteriListesi" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [detayliMusteriListesi].[UserID] AS [UserID], 
+    [detayliMusteriListesi].[UserFirstName] AS [UserFirstName], 
+    [detayliMusteriListesi].[UserLastName] AS [UserLastName], 
+    [detayliMusteriListesi].[ilKodu] AS [ilKodu], 
+    [detayliMusteriListesi].[ilceKodu] AS [ilceKodu], 
+    [detayliMusteriListesi].[Adres] AS [Adres], 
+    [detayliMusteriListesi].[UserMail] AS [UserMail], 
+    [detayliMusteriListesi].[UserPhone] AS [UserPhone]
+    FROM [dbo].[detayliMusteriListesi] AS [detayliMusteriListesi]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="detayliSaticiListesi" EntityType="Self.detayliSaticiListesi" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [detayliSaticiListesi].[UserID] AS [UserID], 
+    [detayliSaticiListesi].[UserFirstName] AS [UserFirstName], 
+    [detayliSaticiListesi].[UserLastName] AS [UserLastName], 
+    [detayliSaticiListesi].[ilKodu] AS [ilKodu], 
+    [detayliSaticiListesi].[ilceKodu] AS [ilceKodu], 
+    [detayliSaticiListesi].[Adres] AS [Adres], 
+    [detayliSaticiListesi].[UserMail] AS [UserMail], 
+    [detayliSaticiListesi].[UserPhone] AS [UserPhone]
+    FROM [dbo].[detayliSaticiListesi] AS [detayliSaticiListesi]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="KisiyeGoreTurListesiView" EntityType="Self.KisiyeGoreTurListesiView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [KisiyeGoreTurListesiView].[UserID] AS [UserID], 
+    [KisiyeGoreTurListesiView].[TurID] AS [TurID]
+    FROM [dbo].[KisiyeGoreTurListesiView] AS [KisiyeGoreTurListesiView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="saticiListesi" EntityType="Self.saticiListesi" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [saticiListesi].[UserID] AS [UserID], 
+    [saticiListesi].[UserFirstName] AS [UserFirstName], 
+    [saticiListesi].[UserLastName] AS [UserLastName]
+    FROM [dbo].[saticiListesi] AS [saticiListesi]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SiparişDetayı" EntityType="Self.SiparişDetayı" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SiparişDetayı].[SaticiID] AS [SaticiID], 
+    [SiparişDetayı].[SipTarihi] AS [SipTarihi], 
+    [SiparişDetayı].[SiparisID] AS [SiparisID], 
+    [SiparişDetayı].[ID] AS [ID], 
+    [SiparişDetayı].[KitapAdi] AS [KitapAdi], 
+    [SiparişDetayı].[UrunAdedi] AS [UrunAdedi], 
+    [SiparişDetayı].[BirimFiyat] AS [BirimFiyat], 
+    [SiparişDetayı].[KargoFirmasiAdi] AS [KargoFirmasiAdi], 
+    [SiparişDetayı].[KargoFirmasiTel] AS [KargoFirmasiTel], 
+    [SiparişDetayı].[YetkiliAd] AS [YetkiliAd], 
+    [SiparişDetayı].[Musteri] AS [Musteri], 
+    [SiparişDetayı].[Adres] AS [Adres], 
+    [SiparişDetayı].[ilceKodu] AS [ilceKodu], 
+    [SiparişDetayı].[ilKodu] AS [ilKodu], 
+    [SiparişDetayı].[satici] AS [satici]
+    FROM [dbo].[SiparişDetayı] AS [SiparişDetayı]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__AltKatego__Kateg__37A5467C" Association="Self.FK__AltKatego__Kateg__37A5467C">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="AltKategori" EntitySet="AltKategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Fatura__SiparisI__7A672E12" Association="Self.FK__Fatura__SiparisI__7A672E12">
+      <End Role="Siparis" EntitySet="Siparis" />
+      <End Role="Fatura" EntitySet="Fatura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ilce__ilKodu__267ABA7A" Association="Self.FK__ilce__ilKodu__267ABA7A">
+      <End Role="il" EntitySet="il" />
+      <End Role="ilce" EntitySet="ilce" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KargoFirm__Kargo__534D60F1" Association="Self.FK__KargoFirm__Kargo__534D60F1">
+      <End Role="KargoFirmasi" EntitySet="KargoFirmasi" />
+      <End Role="KargoFirmYetkili" EntitySet="KargoFirmYetkili" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Kart__UserID__6477ECF3" Association="Self.FK__Kart__UserID__6477ECF3">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Kart" EntitySet="Kart" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Kitap__AltKatego__3B75D760" Association="Self.FK__Kitap__AltKatego__3B75D760">
+      <End Role="AltKategori" EntitySet="AltKategori" />
+      <End Role="Kitap" EntitySet="Kitap" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Kitap__KategoriI__3A81B327" Association="Self.FK__Kitap__KategoriI__3A81B327">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="Kitap" EntitySet="Kitap" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Kitap__SaticiID__3C69FB99" Association="Self.FK__Kitap__SaticiID__3C69FB99">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Kitap" EntitySet="Kitap" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KitapSipa__Kitap__7D439ABD" Association="Self.FK__KitapSipa__Kitap__7D439ABD">
+      <End Role="Kitap" EntitySet="Kitap" />
+      <End Role="KitapSiparisEdilir" EntitySet="KitapSiparisEdilir" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KitapSipa__Satic__7F2BE32F" Association="Self.FK__KitapSipa__Satic__7F2BE32F">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="KitapSiparisEdilir" EntitySet="KitapSiparisEdilir" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KitapSipa__Sipar__7E37BEF6" Association="Self.FK__KitapSipa__Sipar__7E37BEF6">
+      <End Role="Siparis" EntitySet="Siparis" />
+      <End Role="KitapSiparisEdilir" EntitySet="KitapSiparisEdilir" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KitapYaz__KitapI__4222D4EF" Association="Self.FK__KitapYaz__KitapI__4222D4EF">
+      <End Role="Kitap" EntitySet="Kitap" />
+      <End Role="KitapYaz" EntitySet="KitapYaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KitapYaz__YazarI__412EB0B6" Association="Self.FK__KitapYaz__YazarI__412EB0B6">
+      <End Role="Yazar" EntitySet="Yazar" />
+      <End Role="KitapYaz" EntitySet="KitapYaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Siparis__KargoFi__71D1E811" Association="Self.FK__Siparis__KargoFi__71D1E811">
+      <End Role="KargoFirmasi" EntitySet="KargoFirmasi" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Siparis__Musteri__70DDC3D8" Association="Self.FK__Siparis__Musteri__70DDC3D8">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Siparis__Musteri__72C60C4A" Association="Self.FK__Siparis__Musteri__72C60C4A">
+      <End Role="Kart" EntitySet="Kart" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__ilceKodu__2A4B4B5E" Association="Self.FK__Users__ilceKodu__2A4B4B5E">
+      <End Role="ilce" EntitySet="ilce" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__ilKodu__29572725" Association="Self.FK__Users__ilKodu__29572725">
+      <End Role="il" EntitySet="il" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users_Use__TurID__300424B4" Association="Self.FK__Users_Use__TurID__300424B4">
+      <End Role="UserTurleri" EntitySet="UserTurleri" />
+      <End Role="Users_UserTurleriIliskisi" EntitySet="Users_UserTurleriIliskisi" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users_Use__UserI__2F10007B" Association="Self.FK__Users_Use__UserI__2F10007B">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Users_UserTurleriIliskisi" EntitySet="Users_UserTurleriIliskisi" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
