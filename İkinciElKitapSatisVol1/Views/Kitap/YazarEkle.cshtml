@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "YazarEkle";
+}
+
+<h2>Yazar Ekle</h2>
+
+<div class="card">
+    <form action="/Kitap/YazarEkle" method="post" role="form" class="form-vertical">
+        <div class="card-body">
+            <h4 class="card-title">Yazar Ekleme</h4>
+            <div class="form-group row">
+                <label for="fname" class="col-sm-3 text-right control-label col-form-label">Adı-Soyadı</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="fname" placeholder="AdıSoyadı" name="YazarAdi">
+                </div>
+            </div>
+        </div>
+        <div class="border-top">
+            <div class="card-body">
+                <button style="margin-left:450px"type="submit" class="btn btn-primary">Ekle</button>
+            </div>
+        </div>
+    </form>
+</div>
+

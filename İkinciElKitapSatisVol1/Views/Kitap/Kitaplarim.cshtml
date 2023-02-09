@@ -1,0 +1,340 @@
+﻿@using İkinciElKitapSatisVol1.Models
+@{
+    ViewBag.Title = "Kitaplarım";
+}
+
+<h2>Kitaplarım</h2>
+
+@section body{
+    <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Satıcı Silinsin mi?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="KitapAd"> </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                    <button type="button" class="btn btn-primary kitapSil ">Sil</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="row">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Kitaplarım Tablosu</h5>
+            <div class="table-responsive">
+                <div id="zero_config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="zero_config" class="table table-striped table-bordered dataTable" role="grid" aria-describedby="zero_config_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending"
+                                            aria-label="KitapID: activate to sort column descending" style="width: 250.922px;">Kitap ID</th>
+                                        <th class="sorting" tabindex="0" aria-controls="zero_config"
+                                            rowspan="1" colspan="1" aria-label="Kitap adi: activate to sort column ascending" style="width: 392px;">Kitap Adı</th>
+                                        <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label=" Kategori: activate to sort column ascending"
+                                            style="width: 195.438px;">Kategori</th>
+                                        <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label=" Alt Kategori: activate to sort column ascending"
+                                            style="width: 195.438px;">Alt Kategori</th>
+                                        <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Yazar: activate to sort column ascending"
+                                            style="width: 95.3594px;">Yazar</th>
+                                        <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label=" Fiyat: activate to sort column ascending"
+                                            style="width: 195.438px;">Kitap Fiyati</th>
+                                        <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Adet: activate to sort column ascending"
+                                            style="width: 95.3594px;">Kitap Adedi</th>
+                                        <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="imgPath: activate to sort column ascending"
+                                            style="width: 166.188px;">img.path</th>
+                                        <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-label="Kitap Sil: activate to sort column ascending"
+                                            style="width: 156.094px;">Kitap Sil</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (DetayliKitapBilgisi item in ViewBag.Kitap)
+                                    {
+
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">@item.KitapID</td>
+                                            <td>@item.KitapAd</td>
+                                            <td>@item.kategadi</td>
+                                            <td>@item.altkatadi</td>
+                                            <td>@item.yazaradi</td>
+                                            <td>@item.Fiyat</td>
+                                            <td>@item.Adet</td>
+                                            <td>@item.imgpath</td>
+
+                                            <td>
+                                                <button type="button" class="btn btn-warning margin-5 text-white modalAc" data-toggle="modal" data-KitapID="@item.KitapID" data-KitapAdi="@item.KitapAd" data-target="#Modal2">
+                                                    Kitap Sil
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                    }
+
+                                </tbody>
+                                <tfoot>
+                                    <tr><th rowspan="1" colspan="1">Kitap ID</th><th rowspan="1" colspan="1">Kitap Adı</th><th rowspan="1" colspan="1">Kategori</th><th rowspan="1" colspan="1">Yazar</th><th rowspan="1" colspan="1">Alt Kategori</th><th rowspan="1" colspan="1">Fiyat</th><th rowspan="1" colspan="1">Kitap Adedi</th><th rowspan="1" colspan="1">img.path</th><th rowspan="1" colspan="1">Kitap Sil</th></tr>
+                                </tfoot>
+                            </table>
+                            <a href="/Kitap/KitapEkle" style="width: 100px; height: 50px" class="btn btn-primary">Kitap Ekle</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Kitapların Kategoriler Tablosu </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div id="example4_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="example4" class="table table-striped table-bordered dataTable" style="width:90%" role="grid" aria-describedby="example4_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example4" rowspan="1" colspan="1" aria-sort="ascending" aria-label="KategoriID: activate to sort column descending" style="width: 255.422px;">Kategori ID</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example4" rowspan="1" colspan="1" aria-label="Kategori Adı: activate to sort column ascending" style="width: 417.844px;">Kategori Adı</th>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (Kategori item in ViewBag.Kategori)
+                                        {
+
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">@item.KategoriID</td>
+                                                <td>@item.KategoriAdi</td>
+
+                                            </tr>
+
+                                        }
+
+                                    </tbody>
+                                    <tfoot>
+                                        <tr><th rowspan="1" colspan="1">Kategori ID</th><th rowspan="1" colspan="1">Kategori Adı</th></tr>
+                                    </tfoot>
+                                </table>
+                                <form class="form-group row" action="/Kitap/KategoriEkle" method="post" role="form">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Kategori Adı</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="KategoriAdi" placeholder="KategoriAd" name="KategoriAdi">
+                                    </div>
+                                    <button style="margin-left:60px" type="submit" class="btn btn-primary">Kategori Ekle</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-7">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Kitapların Alt Kategorileri Tablosu</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div id="example3_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="example3" class="table table-striped table-bordered dataTable" style="width:90%" role="grid" aria-describedby="example3_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-sort="ascending" aria-label="AltKategoriID: activate to sort column descending" style="width: 255.422px;">Alt Kategori ID</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Alt Kategori Adı: activate to sort column ascending" style="width: 417.844px;">Alt Kategori Adı</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Kategori ID: activate to sort column ascending" style="width: 417.844px;">Kategori ID</th>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (AltKategori item in ViewBag.AltKategori)
+                                        {
+
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">@item.AltKategoriID</td>
+                                                <td>@item.AltKategoriAdi</td>
+                                                <td>@item.KategoriID</td>
+
+                                            </tr>
+
+                                        }
+                                    </tbody>
+                                    <tfoot>
+                                        <tr><th rowspan="1" colspan="1">Alt Kategori ID</th><th rowspan="1" colspan="1">Alt Kategori Adı</th><th rowspan="1" colspan="1">Kategori ID</th>
+                                    </tfoot>
+                                </table>
+                                <form class="form-group row" action="/Kitap/AltKategoriEkle" method="post" role="form">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Alt Kategori Adı</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="AltKategoriAdi" placeholder="AltKategoriAd" name="AltKategoriAdi">
+
+                                    </div>
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Kategori Adı</label>
+                                    <div class="col-sm-8">
+                                        <select style="margin-left:15px" class="col-sm-3 form-control" name="KategoriID">
+
+
+                                            @foreach (Kategori item2 in ViewBag.Kategori)
+                                            {
+
+                                                <option value="@item2.KategoriID">@item2.KategoriAdi</option>
+
+                                            }
+                                        </select>
+                                    </div>
+
+                                    <button style="margin-left:60px" type="submit" class="btn btn-primary">Alt Kategori Ekle</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5">
+        <div class="card">
+            <h5 class="card-header">Yazarlar Tablosu</h5>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                         <div class="row">
+                             <div class="col-sm-12">
+                                 <table class="table table-striped table-bordered first dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                                     <thead>
+                                         <tr role="row">
+                                             <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending"
+                                                 aria-label="ID: activate to sort column descending" style="width: 255.422px;">YazarID</th>
+                                             <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending"
+                                                 aria-label="Ad: activate to sort column descending" style="width: 255.422px;">Yazar</th>
+                                     </thead>
+                                     <tbody>
+
+                                         @foreach (Yazar item in ViewBag.Yazar)
+                                         {
+
+                                             <tr role="row" class="odd">
+                                                 <td class="sorting_1">@item.YazarID</td>
+                                                 <td>@item.YazarAdi</td>
+
+                                             </tr>
+
+                                         }
+                                     </tbody>
+                                     <tfoot>
+                                         <tr><th rowspan="1" colspan="1">YazarID</th><th rowspan="1" colspan="1">Yazar</th>
+                                     </tfoot>
+                                 </table>
+                                 <form class="form-group row" action="/Kitap/YazarEkle" method="post" role="form">
+                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Yazar Adı</label>
+                                     <div class="col-sm-8">
+                                         <input type="text" class="form-control" id="KategoriAdi" placeholder="Yazar Adı" name="YazarAdi">
+                                     </div>
+                                     <button style="margin-left:60px" type="submit" class="btn btn-primary">Yazar Ekle</button>
+                                 </form>
+                             </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+
+@section scripts{
+
+    <script src="~/Content/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="~/Content/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="~/Content/assets/vendor/multi-select/js/jquery.multi-select.js"></script>
+    <script src="~/Content/assets/libs/js/main-js.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/assets/vendor/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="~/Content/assets/vendor/datatables/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/Content/assets/vendor/datatables/js/data-table.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+    <script src="~/Content/assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/Content/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="~/Content/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/Content/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="~/Content/assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="~/Content/dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/Content/dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="~/Content/dist/js/custom.min.js"></script>
+    <!-- this page js -->
+    <script src="~/Content/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+    <script src="~/Content/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+    <script src="~/Content/assets/extra-libs/DataTables/datatables.min.js"></script>
+    <script>
+        /****************************************
+         *       Basic Table                   *
+         ****************************************/
+        $('#zero_config').DataTable();
+    </script>
+
+    <script>
+        $(".modalAc").click(function () {
+            var KitapAdi = $(this).attr("data-KitapAdi");
+            $(".modal-body>p.KitapAd").html(KitapAdi + " isimli kitap silinsin mi?");
+            var id = $(this).attr("data-KitapID");
+            $(".kitapSil").data("KitapID", id);
+
+        });
+
+        $(".kitapSil").click(function () {
+            var id = $(this).data("KitapID")
+
+            $.ajax({
+                type: "POST",
+                url: "/Kitap/KitapSil/" + id,
+                success: function (durum) {
+                    if (durum) {
+                        window.location.replace("/Kitap/Kitaplarim");
+
+                    }
+                    else {
+                        alert("Silme işlemi sırasında hata oluştu")
+                    }
+                }
+            })
+        });
+
+
+
+    </script>
+}
+

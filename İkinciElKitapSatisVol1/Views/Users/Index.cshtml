@@ -1,0 +1,242 @@
+﻿@using İkinciElKitapSatisVol1.Models
+@model Users
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Profil</h2>
+
+@section body{
+    <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Satıcı Silinsin mi?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="KartAd"> </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                    <button type="button" class="btn btn-primary KartSil ">Sil</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="row">
+    <!-- ============================================================== -->
+    <!-- profile -->
+    <!-- ============================================================== -->
+    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12 col-12">
+        <!-- ============================================================== -->
+        <!-- card profile -->
+        <!-- ============================================================== -->
+        <div class="card">
+
+            <div class="card-body">
+
+                <div class="text-center">
+                    <h2 class="font-24 mb-0">@Model.UserFirstName @Model.UserLastName</h2>
+                    <p>ID:@Model.UserID </p>
+                </div>
+            </div>
+            <!--BURADAN AŞAĞISI SOLDAKİ KULLANICI BİLGİLERİ KISMI İÇİN-->
+            <div class="card-body border-top">
+                <h3 class="font-16">İletişim Bilgileri</h3>
+                <div class="">
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><i class="fas fa-fw fa-envelope mr-2"></i>@Model.UserMail</li>
+                        <li class="mb-0"><i class="fas fa-fw fa-phone mr-2"></i>@Model.UserPhone </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="card-body border-top">
+                <h3 class="font-16">Adres</h3>
+                <div>
+                    <p>@Model.Adres </p>
+                    <a href="#" class="badge badge-light mr-1">@ViewBag.ilce/</a>
+                    <a href="#" class="badge badge-light mr-1">@ViewBag.il</a>
+                </div>
+            </div>
+        </div>
+        @if (!User.IsInRole("3"))
+        {
+            <a href="/Users/İliskiKur/3" style="width: 300px; height: 50px" class="btn btn-primary">Müşteri Olmak İstiyorum</a>
+        }
+        @if (!User.IsInRole("2"))
+        {
+            <a href="/Users/İliskiKur/2" style="width: 300px; height: 50px" class="btn btn-primary">Satıcı Olmak İstiyorum</a>
+        }
+
+
+        <!--BURDA SONA ERMİŞ-->
+        <!-- ============================================================== -->
+        <!-- end card profile -->
+        <!-- ============================================================== -->
+    </div>
+    
+    <!-- ============================================================== -->
+    <!-- end profile -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- campaign data -->
+    <!-- ============================================================== -->
+    <div class="col-xl-9 col-lg-9 col-md-7 col-sm-12 col-12">
+        <!-- ============================================================== -->
+        <!-- campaign tab one -->
+        <!-- ============================================================== -->
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Kartlarım</h5>
+                <div class="table-responsive">
+                    <div id="zero_config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="zero_config" class="table table-striped table-bordered dataTable" role="grid" aria-describedby="zero_config_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="zero_config" rowspan="1" colspan="1" aria-sort="ascending"
+                                                aria-label="KartID: activate to sort column descending" style="width: 250.922px;">Kart ID</th>
+                                            <th class="sorting" tabindex="0" aria-controls="zero_config"
+                                                rowspan="1" colspan="1" aria-label="Kart Numarası: activate to sort column ascending" style="width: 392px;">Kart Numarası</th>
+                                            <th class="sorting" tabindex="0" aria-controls="zero_config"
+                                                rowspan="1" colspan="1" aria-label="KartÜst: activate to sort column ascending" style="width: 392px;">Kartın Üstündeki İsim</th>
+                                            <th class="sorting" tabindex="0" aria-controls="zero_config"
+                                                rowspan="1" colspan="1" aria-label="CVV: activate to sort column ascending" style="width: 392px;">CVV</th>
+                                            <th class="sorting" tabindex="0" aria-controls="zero_config"
+                                                rowspan="1" colspan="1" aria-label="Ay: activate to sort column ascending" style="width: 392px;">Son Kullanma Ay</th>
+                                            <th class="sorting" tabindex="0" aria-controls="zero_config"
+                                                rowspan="1" colspan="1" aria-label="Yıl: activate to sort column ascending" style="width: 392px;">Son Kullanma Yıl</th>
+                                            <th class="sorting" tabindex="0" aria-controls="zero_config"
+                                                rowspan="1" colspan="1" aria-label="Kart Sil: activate to sort column ascending" style="width: 392px;">Kart Sil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (Kart item in ViewBag.Kart)
+                                            {
+
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">@item.KartID</td>
+                                            <td>@item.KartNumarası</td>
+                                            <td>@item.KartınUstundekiİsim</td>
+                                            <td>@item.CVV</td>
+                                            <td>@item.sonKullAy</td>
+                                            <td>@item.sonKullYil</td>
+
+                                            <td>
+                                                <button type="button" class="btn btn-warning margin-5 text-white modalAc" data-toggle="modal" data-KartID="@item.KartID" data-KartAdi="@item.KartNumarası" data-target="#Modal2">
+                                                    Kart Sil
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                            }
+
+                                    </tbody>
+                                    <tfoot>
+                                        <tr><th rowspan="1" colspan="1">Kart ID</th><th rowspan="1" colspan="1">Kart Numarası</th><th rowspan="1" colspan="1">Kartın Üstündeki İsim</th><th rowspan="1" colspan="1">CVV</th><th rowspan="1" colspan="1">Son Kullanma Ay</th><th rowspan="1" colspan="1">Son Kullanma Yıl</th><th rowspan="1" colspan="1">Kart Sil</th></tr>
+                                    </tfoot>
+                                </table>
+                                <a href="/Users/KartEkle" style="width: 100px; height: 50px" class="btn btn-primary">Kart Ekle</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- end campaign tab one -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- end campaign data -->
+    <!-- ============================================================== -->
+</div>
+
+@section scripts{
+
+    <script src="~/Content/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="~/Content/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="~/Content/assets/vendor/multi-select/js/jquery.multi-select.js"></script>
+    <script src="~/Content/assets/libs/js/main-js.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/assets/vendor/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="~/Content/assets/vendor/datatables/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/Content/assets/vendor/datatables/js/data-table.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+    <script src="~/Content/assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/Content/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="~/Content/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/Content/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="~/Content/assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="~/Content/dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/Content/dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="~/Content/dist/js/custom.min.js"></script>
+    <!-- this page js -->
+    <script src="~/Content/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+    <script src="~/Content/assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+    <script src="~/Content/assets/extra-libs/DataTables/datatables.min.js"></script>
+    <script>
+        /****************************************
+         *       Basic Table                   *
+         ****************************************/
+        $('#zero_config').DataTable();
+    </script>
+
+    <script>
+        $(".modalAc").click(function () {
+            var KartAdi = $(this).attr("data-KartAdi");
+            $(".modal-body>p.KartAd").html(KartAdi + " isimli kitap silinsin mi?");
+            var id = $(this).attr("data-KartID");
+            $(".KartSil").data("KartID", id);
+
+        });
+
+        $(".KartSil").click(function () {
+            var id = $(this).data("KartID")
+
+            $.ajax({
+                type: "POST",
+                url: "/Users/KartSil/" + id,
+                success: function (durum) {
+                    if (durum) {
+                        window.location.replace("/Users/Index");
+
+                    }
+                    else {
+                        alert("Silme işlemi sırasında hata oluştu")
+                    }
+                }
+            })
+        });
+
+
+
+    </script>
+}

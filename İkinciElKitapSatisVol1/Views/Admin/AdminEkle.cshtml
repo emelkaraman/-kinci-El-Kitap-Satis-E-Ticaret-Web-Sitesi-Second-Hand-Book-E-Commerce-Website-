@@ -1,0 +1,40 @@
+﻿@using İkinciElKitapSatisVol1.Models
+@{
+    ViewBag.Title = "AdminEkle";
+}
+
+<h2>AdminEkle</h2>
+
+<div class="card">
+    <p style="color:red">@ViewBag.Mesaj</p>
+    <form action="/Admin/AdminEkle" method="post" role="form" class="form-vertical">
+        <div class="card-body">
+            <h4 class="card-title">Yeni Admin Ekle</h4>
+
+            <div class="form-group row">
+                <label for="exampleInputPassword1" class="col-sm-3 text-right control-label col-form-label">Kullanıcılar</label>
+                <select style="margin-left:15px" class="col-sm-3 form-control" name="UsersID">
+                    <option>Seçiniz</option>
+                    @foreach (Users item in ViewBag.Users)
+                    {
+                        <option value="@item.UserID">@item.UserFirstName @item.UserLastName</option>
+
+                    }
+                </select>
+            </div>
+            <div class="form-group row">
+                <label for="fname" class="col-sm-3 text-right control-label col-form-label">Adminlik</label>
+                <div class="col-sm-2">
+                    <input style="margin-left:12px; width:200px" type="text" readonly class="form-control" id="1" value="1" name="TurID">
+                </div>
+            </div>
+
+
+        </div>
+        <div class="border-top">
+            <div class="card-body">
+                <button style="margin-left:450px" type="submit" class="btn btn-primary">Tamamla</button>
+            </div>
+        </div>
+    </form>
+</div>

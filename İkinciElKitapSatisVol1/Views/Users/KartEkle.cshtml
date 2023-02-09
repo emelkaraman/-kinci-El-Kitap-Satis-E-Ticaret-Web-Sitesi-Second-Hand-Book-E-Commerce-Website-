@@ -1,0 +1,60 @@
+﻿@using İkinciElKitapSatisVol1.Models
+@model Users
+@{
+    ViewBag.Title = "KartEkle";
+}
+
+<h2>KartEkle</h2>
+
+
+<div class="card">
+    <form action="/Users/KartEkle" method="post" role="form" class="form-horizontal">
+        <div class="card-body">
+            <h4 class="card-title">Kitap Bilgileri</h4>
+            <div class="form-group row">
+                <label for="fname" class="col-sm-3 text-right control-label col-form-label">Kart Numarası</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" maxlength="16" id="KartNumarası" placeholder="Kart Numarası" name="KartNumarası" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Kullanıcı</label>
+                <div class="col-sm-2">
+                    <input style="margin-left:12px; width:200px" type="text" readonly class="form-control" id="@Model.UserID" value="@Model.UserID" name="UserID" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="fname" class="col-sm-3 text-right control-label col-form-label">Kartın Üstündeki İsim</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="KartınÜstündekiİsim" placeholder="İsim" name="KartınUstundekiİsim" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="fname" class="col-sm-3 text-right control-label col-form-label">CVV</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" maxlength="3" id="CVV" placeholder="cvv" name="CVV" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="fname" class="col-sm-3 text-right control-label col-form-label">Son Kullanma Ay</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" min="1" max="12" id="CVV" placeholder="Ay" name="sonKullAy"required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="fname" class="col-sm-3 text-right control-label col-form-label">Son Kullanma Yıl</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" min="2022" id="CVV" placeholder="Yıl" name="sonKullYil" required>
+                </div>
+            </div>
+            
+        </div>
+        <div class="border-top">
+            <div class="card-body">
+                <button type="submit" class="btn btn-primary">Kart Ekle</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,234 @@
+﻿@using İkinciElKitapSatisVol1.Models
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/assets/images/favicon.png">
+    <title>Kullanıcı Kayıt Sayfası</title>
+    <!-- Custom CSS -->
+    <link href="~/Content/dist/css/style.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
+            <div class="auth-box bg-dark border-top border-secondary">
+                <div>
+                    <div class="text-center p-t-20 p-b-20">
+                        <h2>Kullanıcı Kayıt Sayfası</h2>
+                    </div>
+                    <!-- Form -->
+                    <p style="color:cornsilk">@ViewBag.Mesaj</p>
+                    <form class="form-horizontal m-t-20" action="/Anasayfa/Register" method="post"role="form">
+                        <div class="row p-b-30">
+                            <div class="col-12">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-lg" placeholder="Adınız" aria-label="Username" aria-describedby="basic-addon1" name="UserFirstName" required>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-lg" placeholder="Soyadınız" aria-label="Username" aria-describedby="basic-addon1" name="UserLastName" required>
+                                </div>
+                                <!-- email -->
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="ti-email"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-lg" placeholder="Email " aria-label="Username" aria-describedby="basic-addon1" name="UserMail" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-lg" placeholder="Telefon Numarası " aria-label="Phone" aria-describedby="basic-addon1" name="UserPhone" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control form-control-lg" placeholder="Şifre" aria-label="Password" aria-describedby="basic-addon1" name="UserPassword" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-info text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control form-control-lg" placeholder=" Confirm Password" aria-label="Password" aria-describedby="basic-addon1" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-lg" placeholder="Adres " aria-label="Adress" aria-describedby="basic-addon1" name="Adres" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label style="color:azure" for="exampleInputPassword1" class="col-sm-3 text-right control-label col-form-label">İl</label>
+                                    <select class="form-control" name="ilKodu" id="il">
+                                        <option>Seçiniz</option>
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label style="color:azure" for="exampleInputPassword1" class="col-sm-3 text-right control-label col-form-label">İlçe</label>
+                                    <select class="form-control" name="ilceKodu" id="ilce" disabled>
+                                        <option>Bir İl Seçiniz</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row border-top border-secondary">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="p-t-20">
+                                        <button class="btn btn-block btn-lg btn-info" type="submit">Kayıt Ol</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    <script src="~/Content/assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/Content/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="~/Content/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugin js -->
+    <!-- ============================================================== -->
+    <script>
+        $('[data-toggle="tooltip"]').tooltip();
+        $(".preloader").fadeOut();
+    </script>
+    <script>
+        $(function () {
+            //aynı ajaxmı kullanıcağımdan dolayı ajaxsetup oluştuyorum
+            $.ajaxSetup({
+                type: "POST",
+                url: "/Anasayfa/IlIlce",//controlerımda gidicek olan yerim
+                dataType: "json"
+            });
+            $.extend({
+                ilGetir: function () {
+                    $.ajax({
+                        //datamızı gönderiyoruz
+                        data: { "tip": "ilGetir" },
+                        success: function (sonuc) {
+                            //gelen sonucumuz kontrol ediyoruz ona göre selectimze append işlemi gerçekleştiyoruz
+                            if (sonuc.ok) {
+
+                                $.each(sonuc.text, function (index, item) {
+                                    var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                    $("#il").append(optionhtml);
+
+                                });
+
+                            } else {
+                                $.each(sonuc.text, function (index, item) {
+                                    var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                    $("#il").append(optionhtml);
+
+                                });
+
+                            }
+                        }
+                    });
+                },
+                ilceGetir: function (ilKodu) {
+
+                    $.ajax({
+                        //ekstra olarak functionumaza gelen ilID mizi gönderiyoruz
+                        data: { "ilKodu": ilKodu, "tip": "ilceGetir" },
+                        success: function (sonuc) {
+                            //bir önceki kayıtları temizliyorum
+                            $("#ilce option").remove();
+                            if (sonuc.ok) {
+                                //disabled true yapıyorum
+                                $("#ilce").prop("disabled", false);
+                                $.each(sonuc.text, function (index, item) {
+                                    var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                    $("#ilce").append(optionhtml);
+                                });
+
+                            } else {
+                                $.each(sonuc.text, function (index, item) {
+                                    var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                    $("#ilce").append(optionhtml);
+
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+            //ilgetirimizi çalıştıyoruz
+            $.ilGetir();
+            //il selectimizde değişiklik olduğunda çalışacak func
+            $("#il").on("change", function () {
+                //seçili olan id alıyoruz
+                var ilKodu = $(this).val();
+                //seçili olan idmizi ilceGetir'imze gönderiyoruz
+                $.ilceGetir(ilKodu);
+            });
+        });
+    </script>
+</body>
+
+</html>

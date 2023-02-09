@@ -1,0 +1,148 @@
+﻿@using İkinciElKitapSatisVol1.Models
+@model Users
+@{
+    ViewBag.Title = "KitapEkle";
+}
+
+<h2>Kitap Ekleme Sayfası</h2>
+
+
+<div class="card">
+    <form action="/Kitap/KitapEkle" method="post" role="form" class="form-horizontal">
+        <div class="card-body">
+            <h4 class="card-title">Kitap Bilgileri</h4>
+            <div class="form-group row">
+                <label for="fname" class="col-sm-3 text-right control-label col-form-label">Kitap Adı</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="KitapID" placeholder="Kitap Adı" name="KitapAdi">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Fiyat</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" id="Fiyat" placeholder="Fiyat" name="Fiyat">
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <label for="exampleInputPassword1" class="col-sm-3 text-right control-label col-form-label">Kategori</label>
+                <select class="form-control" name="KategoriID" id="kategori">
+                    <option>Seçiniz</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <label for="exampleInputPassword1" class="col-sm-3 text-right control-label col-form-label">Alt Kategori</label>
+                <select class="form-control" name="AltKategoriID" id="altkategori" disabled>
+                    <option>Bir Kategori Seçiniz</option>
+                </select>
+            </div>
+
+            <div class="form-group row">
+                <label for="exampleInputPassword1" class="col-sm-3 text-right control-label col-form-label">Satıcı</label>
+                <input style="margin-left:12px; width:200px" type="text" readonly class="form-control" id="@Model.UserID" value="@Model.UserID" name="SaticiID">
+            </div>
+            <div class="form-group row">
+                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Fotoğraf</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="imagepath" placeholder="Fotoğraf dosya yolu" name="imgPath">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Adet</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" id="Adet" placeholder="Adet" name="Adet">
+                </div>
+            </div>
+        </div>
+        <div class="border-top">
+            <div class="card-body">
+                <button type="submit" class="btn btn-primary">Kitap Ekle</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    <script src="~/Content/assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/Content/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="~/Content/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugin js -->
+    <!-- ============================================================== -->
+    <script>
+        $('[data-toggle="tooltip"]').tooltip();
+        $(".preloader").fadeOut();
+    </script>
+    <script>
+        $(function () {
+            //aynı ajaxmı kullanıcağımdan dolayı ajaxsetup oluştuyorum
+            $.ajaxSetup({
+                type: "POST",
+                url: "/Kitap/KategoriAltKategori",//controlerımda gidicek olan yerim
+                dataType: "json"
+            });
+            $.extend({
+                KategoriGetir: function () {
+                    $.ajax({
+                        //datamızı gönderiyoruz
+                        data: { "tip": "KategoriGetir" },
+                        success: function (sonuc) {
+                            //gelen sonucumuz kontrol ediyoruz ona göre selectimze append işlemi gerçekleştiyoruz
+                            if (sonuc.ok) {
+
+                                $.each(sonuc.text, function (index, item) {
+                                    var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                    $("#kategori").append(optionhtml);
+
+                                });
+
+                            } else {
+                                $.each(sonuc.text, function (index, item) {
+                                    var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                    $("#kategori").append(optionhtml);
+
+                                });
+
+                            }
+                        }
+                    });
+                },
+                AltKategoriGetir: function (KategoriID) {
+                    $.ajax({
+                        //ekstra olarak functionumaza gelen KategoriID mizi gönderiyoruz
+                        data: { "KategoriID": KategoriID, "tip": "AltKategoriGetir" },
+                        success: function (sonuc) {
+                            //bir önceki kayıtları temizliyorum
+                            $("#altkategori option").remove();
+                            if (sonuc.ok) {
+                                //disabled true yapıyorum
+                                $("#altkategori").prop("disabled", false);
+                                $.each(sonuc.text, function (index, item) {
+                                    var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                    $("#altkategori").append(optionhtml);
+                                });
+
+                            } else {
+                                $.each(sonuc.text, function (index, item) {
+                                    var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                    $("#altkategori").append(optionhtml);
+
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+            //Kategori Getiri çalıştıyoruz
+            $.KategoriGetir();
+            //kategori selectimizde değişiklik olduğunda çalışacak func
+            $("#kategori").on("change", function () {
+                //seçili olan id alıyoruz
+                var KategoriID = $(this).val();
+                //seçili olan idmizi AltKategoriGetir'imze gönderiyoruz
+                $.AltKategoriGetir(KategoriID);
+            });
+        });
+    </script>
+}

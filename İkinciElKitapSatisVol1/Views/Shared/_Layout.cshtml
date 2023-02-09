@@ -1,0 +1,293 @@
+﻿
+
+@using İkinciElKitapSatisVol1.AppClass;
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/assets/images/favicon.png">
+    <title>İkinci El Kitap Satış</title>
+    <!-- Custom CSS -->
+    <link href="~/Content/assets/libs/flot/css/float-chart.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Content/dist/css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="~/Content/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/assets/libs/css/style.css">
+    <link rel="stylesheet" href="~/Content/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    @RenderSection("head",false)
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <h3 class="h-auto text-white text-center">Hoşgeldiniz, @HttpContext.Current.User.Identity.Name</h3>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+
+                    <ul class="navbar-nav float-left mr-auto">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="d-none d-md-block">Kullanıcı Türleri <i class="fa fa-angle-down"></i></span>
+                                <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @if (User.IsInRole("1"))
+                                {
+                                    <a class="dropdown-item" href="#">Admin</a>
+                                }
+                                @if (User.IsInRole("2"))
+                                {
+                                    <a class="dropdown-item" href="#">Satıcı</a>
+                                }
+                                @if (User.IsInRole("3"))
+                                {
+                                    <a class="dropdown-item" href="#">Müşteri</a>
+                                }
+
+
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item ">
+                            <a class="nav-link waves-effect waves-dark" href="/Anasayfa/Index">Anasayfa</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link waves-effect waves-dark" href="/Kitap/Index">Kitaplar</a>
+                        </li>
+                        @if (User.IsInRole("1"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="d-none d-md-block">Kullanıcılar <i class="fa fa-angle-down"></i></span>
+                                    <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="/Admin/Index">Admin</a>
+                                    <a class="dropdown-item" href="/Satici/Index">Satıcı</a>
+                                    <a class="dropdown-item" href="/Musteri/Index">Alıcı</a>
+                                </div>
+                            </li>
+                        }
+
+                       
+
+                        <li class="nav-item search-box">
+                            <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
+                            <form class="app-search position-absolute">
+                                <input type="text" class="form-control" placeholder="Search "> <a class="srh-btn"><i class="ti-close"></i></a>
+                            </form>
+                        </li>
+
+
+
+                        
+
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-right">
+                        <!-- ============================================================== -->
+                        <!-- Comment -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- End Comment -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Messages -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- End Messages -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="d-none d-md-block">Sepet <i class="fa fa-angle-down"></i></span>
+                                <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                @if (Session["Sepet"] != null)
+                                {
+                                    foreach (var item in (List<Item>)Session["Sepet"])
+                                    {
+                                        <a href="/Kitap/SepettenKaldir/@item.kitaplar.KitapID">@item.kitaplar.KitapAdi (@item.adet) <i class="fa fa-times"></i></a>
+                                        <div class="dropdown-divider"></div>
+                                    }
+                                }
+
+                                @if (Session["Sepet"] == null)
+                                {
+                                    <a href="#">Sepet Boş</a>
+                                }
+
+                                @if (User.IsInRole("3"))
+                                {
+                                    <div class="dropdown-divider"></div>
+                                    <div class="p-l-30 p-10"><a href="/Kitap/Sepetim" class="btn btn-sm btn-success btn-rounded">Sepete Git</a></div>
+                                }
+
+
+                            </div>
+                        </li>
+
+                        <!-- User profile and search -->
+                        <!-- USER DROPDOWN'I BURASI'-->
+
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/Content/assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                                
+                                @if (User.IsInRole("2"))
+                                {
+                                    <a class="dropdown-item" href="/Kitap/Kitaplarim"><i class="ti-user m-r-5 m-l-5"></i> Kitaplarım</a>
+                                }
+
+                                @if (User.IsInRole("3") || User.IsInRole("2"))
+                                {
+                                    <a class="dropdown-item" href="/Siparis/Index"><i class="ti-email m-r-5 m-l-5"></i> Siparişlerim</a>
+                                    <div class="dropdown-divider"></div>
+                                }
+
+                                <a class="dropdown-item" href="/Anasayfa/LogOut"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                                <div class="dropdown-divider"></div>
+                                <div class="p-l-30 p-10"><a href="/Users/Index" class="btn btn-sm btn-success btn-rounded">View Profile</a></div>
+                            </div>
+                        </li>
+
+
+
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header><br /> <br />
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+       
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            
+            @RenderBody()
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center">
+                All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+     @RenderSection("body",false)
+    <script src="~/Content/assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/Content/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="~/Content/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="~/Content/assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="~/Content/dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/Content/dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="~/Content/dist/js/custom.min.js"></script>
+    <!--This page JavaScript -->
+    <!-- <script src="~/Content/dist/js/pages/dashboards/dashboard1.js"></script> -->
+    <!-- Charts js Files -->
+    <script src="~/Content/assets/libs/flot/excanvas.js"></script>
+    <script src="~/Content/assets/libs/flot/jquery.flot.js"></script>
+    <script src="~/Content/assets/libs/flot/jquery.flot.pie.js"></script>
+    <script src="~/Content/assets/libs/flot/jquery.flot.time.js"></script>
+    <script src="~/Content/assets/libs/flot/jquery.flot.stack.js"></script>
+    <script src="~/Content/assets/libs/flot/jquery.flot.crosshair.js"></script>
+    <script src="~/Content/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script src="~/Content/dist/js/pages/chart/chart-page-init.js"></script>
+    <script src="~/Contentassets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <!-- bootstap bundle js -->
+    <script src="~/Content/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- slimscroll js -->
+    <script src="~/Content/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <!-- main js -->
+    <script src="~/Content/assets/libs/js/main-js.js"></script>
+    @RenderSection("scripts",false)
+</body>
+
+</html>
