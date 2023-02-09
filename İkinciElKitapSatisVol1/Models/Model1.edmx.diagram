@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3b875134fb28470dab554a005f89879b" Name="Diagram1">
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.AltKategori" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.Fatura" Width="1.5" PointX="12" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.il" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.ilce" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.KargoFirmasi" Width="1.5" PointX="7.5" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.KargoFirmYetkili" Width="1.5" PointX="9.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.Kart" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.Kategori" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.Kitap" Width="1.5" PointX="7.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.KitapSiparisEdilir" Width="1.5" PointX="12" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.KitapYaz" Width="1.5" PointX="9.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.Siparis" Width="1.5" PointX="9.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.Users" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.Users_UserTurleriIliskisi" Width="1.5" PointX="7.5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.UserTurleri" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.Yazar" Width="1.5" PointX="7.5" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.detayliAdminListesi" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.DetayliKitapBilgisi" Width="1.5" PointX="9.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.detayliMusteriListesi" Width="1.5" PointX="11.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.detayliSaticiListesi" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.KisiyeGoreTurListesiView" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.saticiListesi" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__AltKatego__Kateg__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__Kitap__AltKatego__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__Fatura__SiparisI__7A672E12" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__ilce__ilKodu__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__Users__ilKodu__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__Users__ilceKodu__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__KargoFirm__Kargo__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__Siparis__KargoFi__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__Kart__UserID__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__Siparis__Musteri__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__Kitap__KategoriI__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__Kitap__SaticiID__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__KitapSipa__Kitap__75A278F5" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__KitapYaz__KitapI__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__KitapSipa__Sipar__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__KitapYaz__YazarI__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__Siparis__Musteri__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__Users_Use__UserI__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__Users_Use__TurID__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="İkinciElKitapSatisModel.FK__KitapSipa__Satic__7F2BE32F" />
+        <EntityTypeShape EntityType="İkinciElKitapSatisModel.SiparişDetayı" Width="1.5" PointX="3.375" PointY="13.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
