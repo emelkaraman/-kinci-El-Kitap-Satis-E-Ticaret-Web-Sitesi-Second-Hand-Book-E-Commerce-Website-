@@ -1,4 +1,4 @@
-# Ikinci-El-Kitap-Satis-E-Ticaret-Web-Sitesi-Second-Hand-Book-E-Commerce-Website-
+# e-commerce_book-sale
 The aim of this project is developing a website using C#, SQL(mssql), mvc design pattern and its subject is selling second hand books.  
 This website includes three user tipes which are customer, vendor, admin. 
 A person can be customer and vendor. 
